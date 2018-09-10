@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1、前端领域的两种像素1.分辨率iPhone6的分辨率是750*1334，意思是iphone6的屏幕从横纵方向看，（单位宽度上）分别有750和1334个像素点 2.设备像素设备屏幕的物理像素，每个设备的物理像素（点）的数量是固定的  从某种角度来理解，分辨率与设备像素可以看作是一样的3.CSS像素web开发者创造的抽象概念当我们给一个元素设置了width=”200px”，表示该元素的宽度跨越了20">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端适配">
+<meta property="og:url" content="http://yoursite.com/2018/05/14/移动端适配/index.html">
+<meta property="og:site_name" content="图南">
+<meta property="og:description" content="1、前端领域的两种像素1.分辨率iPhone6的分辨率是750*1334，意思是iphone6的屏幕从横纵方向看，（单位宽度上）分别有750和1334个像素点 2.设备像素设备屏幕的物理像素，每个设备的物理像素（点）的数量是固定的  从某种角度来理解，分辨率与设备像素可以看作是一样的3.CSS像素web开发者创造的抽象概念当我们给一个元素设置了width=”200px”，表示该元素的宽度跨越了20">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://7xlolm.com1.z0.glb.clouddn.com/20150923px2.jpg">
+<meta property="og:image" content="http://7xlolm.com1.z0.glb.clouddn.com/20150923px3.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Qsister/markdownPictures/master/1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Qsister/markdownPictures/master/2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Qsister/markdownPictures/master/3.jpg">
+<meta property="og:updated_time" content="2018-09-10T14:37:20.108Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端适配">
+<meta name="twitter:description" content="1、前端领域的两种像素1.分辨率iPhone6的分辨率是750*1334，意思是iphone6的屏幕从横纵方向看，（单位宽度上）分别有750和1334个像素点 2.设备像素设备屏幕的物理像素，每个设备的物理像素（点）的数量是固定的  从某种角度来理解，分辨率与设备像素可以看作是一样的3.CSS像素web开发者创造的抽象概念当我们给一个元素设置了width=”200px”，表示该元素的宽度跨越了20">
+<meta name="twitter:image" content="http://7xlolm.com1.z0.glb.clouddn.com/20150923px2.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>移动端适配</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about">关于</a></li>
+         
+          <li><a href="/archives">归档</a></li>
+         
+          <li><a href="/tags">标签</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/08/19/axios全局请求参数设置/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/03/11/分页插件/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/05/14/移动端适配/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/05/14/移动端适配/&text=移动端适配"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/05/14/移动端适配/&title=移动端适配"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/05/14/移动端适配/&is_video=false&description=移动端适配"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=移动端适配&body=Check out this article: http://yoursite.com/2018/05/14/移动端适配/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/05/14/移动端适配/&title=移动端适配"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/05/14/移动端适配/&title=移动端适配"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/05/14/移动端适配/&title=移动端适配"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/05/14/移动端适配/&title=移动端适配"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/05/14/移动端适配/&name=移动端适配&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、前端领域的两种像素"><span class="toc-number">1.</span> <span class="toc-text">1、前端领域的两种像素</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-分辨率"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">1.分辨率</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-设备像素"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">2.设备像素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-CSS像素"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">3.CSS像素</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#设备的dpr"><span class="toc-number">1.0.0.3.1.</span> <span class="toc-text">设备的dpr</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#用户缩放"><span class="toc-number">1.0.0.3.2.</span> <span class="toc-text">用户缩放</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、移动端的三种视口"><span class="toc-number">2.</span> <span class="toc-text">2、移动端的三种视口</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#布局视口"><span class="toc-number">2.0.0.0.1.</span> <span class="toc-text">布局视口</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#视觉视口"><span class="toc-number">2.0.0.0.2.</span> <span class="toc-text">视觉视口</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#理想视口"><span class="toc-number">2.0.0.0.3.</span> <span class="toc-text">理想视口</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、设备像素比-DPR"><span class="toc-number">3.</span> <span class="toc-text">3、设备像素比(DPR)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、缩放"><span class="toc-number">4.</span> <span class="toc-text">4、缩放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、meta标签"><span class="toc-number">5.</span> <span class="toc-text">5、meta标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6、媒体查询"><span class="toc-number">6.</span> <span class="toc-text">6、媒体查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7、淘宝flexible方案"><span class="toc-number">7.</span> <span class="toc-text">7、淘宝flexible方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解决问题1-布局适配多种设备"><span class="toc-number">7.1.</span> <span class="toc-text">解决问题1 布局适配多种设备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决问题2-px不适用；页面元素应该跟随设备等比缩放"><span class="toc-number">7.2.</span> <span class="toc-text">解决问题2 px不适用；页面元素应该跟随设备等比缩放</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-rem"><span class="toc-number">7.2.1.</span> <span class="toc-text">1.rem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-页面元素应该跟随设备等比缩放"><span class="toc-number">7.2.2.</span> <span class="toc-text">2.页面元素应该跟随设备等比缩放</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#淘宝flexible方案总结"><span class="toc-number">7.2.2.1.</span> <span class="toc-text">淘宝flexible方案总结</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8、网易方案"><span class="toc-number">8.</span> <span class="toc-text">8、网易方案</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        移动端适配
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">图南</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-05-14T12:05:02.000Z" itemprop="datePublished">2018-05-14</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/前端/">前端</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="1、前端领域的两种像素"><a href="#1、前端领域的两种像素" class="headerlink" title="1、前端领域的两种像素"></a>1、前端领域的两种像素</h2><h5 id="1-分辨率"><a href="#1-分辨率" class="headerlink" title="1.分辨率"></a>1.分辨率</h5><p>iPhone6的分辨率是750*1334，意思是iphone6的屏幕从横纵方向看，（单位宽度上）分别有750和1334个像素点</p>
+<h5 id="2-设备像素"><a href="#2-设备像素" class="headerlink" title="2.设备像素"></a>2.设备像素</h5><p>设备屏幕的物理像素，每个设备的物理像素（点）的数量是固定的</p>
+<ul>
+<li><em>从某种角度来理解，分辨率与设备像素可以看作是一样的</em><h5 id="3-CSS像素"><a href="#3-CSS像素" class="headerlink" title="3.CSS像素"></a>3.CSS像素</h5>web开发者创造的抽象概念<p style="color:red">当我们给一个元素设置了width=”200px”，表示该元素的宽度跨越了200个CSS像素，而不一定是200个物理像素；至于跨越了多少个物理像素，取决于设备的屏幕特性（dpr）和用户的缩放</p>
+
+</li>
+</ul>
+<h6 id="设备的dpr"><a href="#设备的dpr" class="headerlink" title="设备的dpr"></a>设备的dpr</h6><p>苹果的retina屏，像素密度是普通屏幕的两倍，当我们设置宽度为200px时，跨越了400个设备像素<br><img src="http://7xlolm.com1.z0.glb.clouddn.com/20150923px2.jpg" alt="image"></p>
+<h6 id="用户缩放"><a href="#用户缩放" class="headerlink" title="用户缩放"></a>用户缩放</h6><p>当用户缩小页面,那么一个CSS像素会小于一个设备像素，此时width=”200px”跨越不了200个设备像素<br><img src="http://7xlolm.com1.z0.glb.clouddn.com/20150923px3.jpg" alt="image"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">总结</span><br><span class="line">1.前端领域存在2种像素，css像素和设备像素。</span><br><span class="line">2.css像素是可变的，用户缩放就是在缩放css像素的大小；而一个设备的物理像素，大小和数量都是固定的。</span><br></pre></td></tr></table></figure></p>
+<h2 id="2、移动端的三种视口"><a href="#2、移动端的三种视口" class="headerlink" title="2、移动端的三种视口"></a>2、移动端的三种视口</h2><h6 id="布局视口"><a href="#布局视口" class="headerlink" title="布局视口"></a>布局视口</h6><ul>
+<li>布局视口是CSS布局的依据</li>
+<li>PC端布局视口的宽度就是浏览器的宽度，二者是一致的</li>
+<li>在移动端，布局视口大于浏览器窗口。是为了保证，某些没有做移动端适配的PC网页，在手机上也能正常显示，用户可以拖动页面浏览整个网页</li>
+</ul>
+<h6 id="视觉视口"><a href="#视觉视口" class="headerlink" title="视觉视口"></a>视觉视口</h6><p>视觉视口就是用户正在看到的网站的区域，注意，是网站的区域。当用户缩小页面时，看到的内容变多，视觉视口变大</p>
+<h6 id="理想视口"><a href="#理想视口" class="headerlink" title="理想视口"></a>理想视口</h6><ul>
+<li>由于手机端更适合窄屏浏览，而我们布局的依据是布局视口。我们可以通过下面的代码，把布局视口设置为更理想的宽度，也就是理想视口</li>
+<li>理想视口是一个虚拟的概念，是开发者觉得理想的宽度，一般设为device-width<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">总结</span><br><span class="line">1.布局视口：PC端布局视口就是浏览器窗口；移动端布局视口大于浏览器窗口</span><br><span class="line">2.视觉视口：用户看见的网页区域，缩放会改变视觉视口</span><br><span class="line">3.理想视口：将布局视口设置为理想视口，手端窄屏布局的解决方案</span><br></pre></td></tr></table></figure>
+<h2 id="3、设备像素比-DPR"><a href="#3、设备像素比-DPR" class="headerlink" title="3、设备像素比(DPR)"></a>3、设备像素比(DPR)</h2><p>公式成立的大前提，缩放比为1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设备像素比=设备像素个数/理想视口CSS像素个数</span><br></pre></td></tr></table></figure></p>
+<h2 id="4、缩放"><a href="#4、缩放" class="headerlink" title="4、缩放"></a>4、缩放</h2><p>缩放：缩小放大的是 CSS像素。</p>
+<h2 id="5、meta标签"><a href="#5、meta标签" class="headerlink" title="5、meta标签"></a>5、meta标签</h2><p>meta标签用来将移动端的布局视口调整为理想视口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;name=value,name=value&quot; /&gt;</span><br><span class="line">content的内容是键值对，共5个</span><br><span class="line">1. width 设置布局视口的宽</span><br><span class="line">2. init-scale 页面初始缩放比</span><br><span class="line">3. minimun-scale 页面最小缩放比</span><br><span class="line">4. maximum-scale 页面最大缩放比</span><br><span class="line">5. user-scalable 是否允许用户缩放</span><br><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="6、媒体查询"><a href="#6、媒体查询" class="headerlink" title="6、媒体查询"></a>6、媒体查询</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@media 媒体类型 and (视口特性阀值)&#123;</span><br><span class="line">    // 满足条件的css样式代码</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">1、检查媒体类型，如screen，tv</span><br><span class="line">2、检查布局视口的宽高</span><br><span class="line">@media all and (min-width: 321px) and (max-width: 400px)&#123;</span><br><span class="line">    .box&#123;</span><br><span class="line">        background: red;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="7、淘宝flexible方案"><a href="#7、淘宝flexible方案" class="headerlink" title="7、淘宝flexible方案"></a>7、淘宝flexible方案</h2><p><img src="https://raw.githubusercontent.com/Qsister/markdownPictures/master/1.png" alt="image"></p>
+<blockquote>
+<p>一张750px(CSS像素)的设计图，上面有一个200px*200px的红色方块，页面骨架如下：我们将布局视口设置为理想视口，初始缩放比设为1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head lang=&quot;en&quot;&gt;</span><br><span class="line">	&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">	&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&quot; /&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;box&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>我们可能写出这样的CSS代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">	width: 200px;</span><br><span class="line">	height: 200px;</span><br><span class="line">	background-color: red</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>将页面调试到iphone6下，却发现方块比想象的大很多。</p>
+<p><img src="https://raw.githubusercontent.com/Qsister/markdownPictures/master/2.png" alt="image"></p>
+<p>原因是：由于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设备像素比=设备像素个数/理想视口CSS像素个数</span><br></pre></td></tr></table></figure></p>
+<p>iphone6的dpr=2,设备像素是750px,所以理想视口宽度是375px，方块是200px，故占页面比例很大。我们的布局视口恰好是设计图的一半，故页面元素应该等比例压缩，将方块宽高改为100px，即可显示正确<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">	width: 100px;</span><br><span class="line">	height: 100px;</span><br><span class="line">	background-color: red</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>存在2个问题</strong></p>
+<p style="color:red"><br>1、不同的设备，dpr不一样，设备像素不一样，所以理想的布局视口也不一样。无法确定页面元素的宽度以什么比例缩放<br></p><br><p style="color:red"><br>2、上例中，把设计图中的元素尺寸压缩一半。200/2=100,可若元素时奇数宽度，如101px,压缩一半是50.5px，浏览器会自动取整为56px，这样的结果并不理想<br></p>
+
+<h3 id="解决问题1-布局适配多种设备"><a href="#解决问题1-布局适配多种设备" class="headerlink" title="解决问题1 布局适配多种设备"></a>解决问题1 布局适配多种设备</h3><blockquote>
+<p>如果能让布局视口和设备设备像素尺寸相等，那么针对iphone6，就能够直接使用设计图上的元素尺寸；可以考虑缩放：iphone6的dpr是2，一个css像素宽度可以覆盖2个设备像素，所以750px的设备宽度的布局视口为375CSS像素；可以通过将css像素缩小为原来的0.5倍，使750个设备像素能显示750个CSS像素。<br><strong>缩小的倍数是dpr的倒数</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//对于不同的手机，动态计算缩放比，生成meta标签</span><br><span class="line">var scale = 1 / window.devicePixelRatio;</span><br><span class="line">document.querySelector(&apos;meta[name=&quot;viewport&quot;]&apos;).setAttribute(&apos;content&apos;,&apos;width=device-width,initial-scale=&apos; + scale + &apos;, maximum-scale=&apos; + scale + &apos;, minimum-scale=&apos; + scale + &apos;, user-scalable=no&apos;);</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>上述方案衍生出一个新的问题，例如iphone5，设备像素是640，dpr是2；经过缩放之后，布局视口尺寸是640.而设计图尺寸是750，设计图中的尺寸仍然不能直接使用。这个bug将和问题2一起解决</p>
+<h3 id="解决问题2-px不适用；页面元素应该跟随设备等比缩放"><a href="#解决问题2-px不适用；页面元素应该跟随设备等比缩放" class="headerlink" title="解决问题2 px不适用；页面元素应该跟随设备等比缩放"></a>解决问题2 px不适用；页面元素应该跟随设备等比缩放</h3><h4 id="1-rem"><a href="#1-rem" class="headerlink" title="1.rem"></a>1.rem</h4><blockquote>
+<p>rem是基于html标签的字体大小的</p>
+<ul>
+<li>浏览器识别rem的小数形式</li>
+</ul>
+</blockquote>
+<h4 id="2-页面元素应该跟随设备等比缩放"><a href="#2-页面元素应该跟随设备等比缩放" class="headerlink" title="2.页面元素应该跟随设备等比缩放"></a>2.页面元素应该跟随设备等比缩放</h4><ul>
+<li><p>将设备的布局视口(clientWidth)分为10份</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.documentElement.style.fontSize = document.documentElement.clientWidth / 10 + &apos;px&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将设计图分为10份，每份是75px</p>
+</li>
+<li>我们想知道的是，设计图上的某个元素，在实际设备上应该显示的尺寸<br><img src="https://raw.githubusercontent.com/Qsister/markdownPictures/master/3.jpg" alt="image"></li>
+</ul>
+<p>如果设计图是640px的，元素的实际尺寸应该是a/64rem</p>
+<h5 id="淘宝flexible方案总结"><a href="#淘宝flexible方案总结" class="headerlink" title="淘宝flexible方案总结"></a>淘宝flexible方案总结</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、设置缩放比，缩放CSS像素，将布局视口设为与设备像素尺寸一致</span><br><span class="line">var scale = 1 / window.devicePixelRatio;</span><br><span class="line">document.querySelector(&apos;meta[name=&quot;viewport&quot;]&apos;).setAttribute(&apos;content&apos;,&apos;width=device-width,initial-scale=&apos; + scale + &apos;, maximum-scale=&apos; + scale + &apos;, minimum-scale=&apos; + scale + &apos;, user-scalable=no&apos;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2、根据布局视口宽度，计算根元素fontSize</span><br><span class="line">document.documentElement.style.fontSize = document.documentElement.clientWidth / 10 + &apos;px&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3、以根元素尺寸为标准，元素rem布局，保证元素随设备按比例缩放</span><br><span class="line">例如750px设计图中200px的宽度，如今应该设为200/75 rem</span><br></pre></td></tr></table></figure>
+<h2 id="8、网易方案"><a href="#8、网易方案" class="headerlink" title="8、网易方案"></a>8、网易方案</h2><blockquote>
+<p>750设计图，以100px为1rem，一共是7.5rem，针对不同布局视口的设备，都将宽度分为7.5rem，那么不同设备的1rem对应的css像素各不相同。计算方法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + &apos;px&apos;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>对于750设计图，1rem=100px;200px宽的元素宽度是2rem；对于375的手机，1rem=50px;2rem=100px;恰好是元素应当显示的css宽度</p>
+<blockquote>
+<p>对于不同的布局视口尺寸，都分成7.5份，每份是1rem，对于设计图中元素，都以rem为单位，就实现了设计图在不同布局尺寸上的按比例缩放</p>
+</blockquote>
+<p><a href="http://hcysun.me/2015/10/19/%E4%B8%80%E7%AF%87%E7%9C%9F%E6%AD%A3%E6%95%99%E4%BC%9A%E4%BD%A0%E5%BC%80%E5%8F%91%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%96%87%E7%AB%A0-%E4%BA%8C/" target="_blank" rel="noopener">http://hcysun.me/2015/10/19/%E4%B8%80%E7%AF%87%E7%9C%9F%E6%AD%A3%E6%95%99%E4%BC%9A%E4%BD%A0%E5%BC%80%E5%8F%91%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%96%87%E7%AB%A0-%E4%BA%8C/</a></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about">关于</a></li>
+         
+          <li><a href="/archives">归档</a></li>
+         
+          <li><a href="/tags">标签</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、前端领域的两种像素"><span class="toc-number">1.</span> <span class="toc-text">1、前端领域的两种像素</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-分辨率"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">1.分辨率</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-设备像素"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">2.设备像素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-CSS像素"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">3.CSS像素</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#设备的dpr"><span class="toc-number">1.0.0.3.1.</span> <span class="toc-text">设备的dpr</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#用户缩放"><span class="toc-number">1.0.0.3.2.</span> <span class="toc-text">用户缩放</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、移动端的三种视口"><span class="toc-number">2.</span> <span class="toc-text">2、移动端的三种视口</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#布局视口"><span class="toc-number">2.0.0.0.1.</span> <span class="toc-text">布局视口</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#视觉视口"><span class="toc-number">2.0.0.0.2.</span> <span class="toc-text">视觉视口</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#理想视口"><span class="toc-number">2.0.0.0.3.</span> <span class="toc-text">理想视口</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、设备像素比-DPR"><span class="toc-number">3.</span> <span class="toc-text">3、设备像素比(DPR)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、缩放"><span class="toc-number">4.</span> <span class="toc-text">4、缩放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、meta标签"><span class="toc-number">5.</span> <span class="toc-text">5、meta标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6、媒体查询"><span class="toc-number">6.</span> <span class="toc-text">6、媒体查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7、淘宝flexible方案"><span class="toc-number">7.</span> <span class="toc-text">7、淘宝flexible方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解决问题1-布局适配多种设备"><span class="toc-number">7.1.</span> <span class="toc-text">解决问题1 布局适配多种设备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决问题2-px不适用；页面元素应该跟随设备等比缩放"><span class="toc-number">7.2.</span> <span class="toc-text">解决问题2 px不适用；页面元素应该跟随设备等比缩放</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-rem"><span class="toc-number">7.2.1.</span> <span class="toc-text">1.rem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-页面元素应该跟随设备等比缩放"><span class="toc-number">7.2.2.</span> <span class="toc-text">2.页面元素应该跟随设备等比缩放</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#淘宝flexible方案总结"><span class="toc-number">7.2.2.1.</span> <span class="toc-text">淘宝flexible方案总结</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8、网易方案"><span class="toc-number">8.</span> <span class="toc-text">8、网易方案</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/05/14/移动端适配/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/05/14/移动端适配/&text=移动端适配"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/05/14/移动端适配/&title=移动端适配"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/05/14/移动端适配/&is_video=false&description=移动端适配"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=移动端适配&body=Check out this article: http://yoursite.com/2018/05/14/移动端适配/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/05/14/移动端适配/&title=移动端适配"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/05/14/移动端适配/&title=移动端适配"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/05/14/移动端适配/&title=移动端适配"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/05/14/移动端适配/&title=移动端适配"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/05/14/移动端适配/&name=移动端适配&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 llding
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about">关于</a></li>
+         
+          <li><a href="/archives">归档</a></li>
+         
+          <li><a href="/tags">标签</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
