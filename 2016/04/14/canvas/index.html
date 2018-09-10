@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="基于状态绘制后面的绘制会影响前面的效果，故用到beginPath()和closePath()方法，把一个个图形绘制分开,但是closePath()方法会自动将非封闭的图形闭合起来，两个方法不一定要同时出现 绘制直线1234567891011121314//不建议用css设置canvas的宽高，没有px单位&amp;lt;canvas id=&amp;quot;canvas&amp;quot; style=&amp;quot;di">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="canvas">
+<meta property="og:url" content="http://yoursite.com/2016/04/14/canvas/index.html">
+<meta property="og:site_name" content="图南">
+<meta property="og:description" content="基于状态绘制后面的绘制会影响前面的效果，故用到beginPath()和closePath()方法，把一个个图形绘制分开,但是closePath()方法会自动将非封闭的图形闭合起来，两个方法不一定要同时出现 绘制直线1234567891011121314//不建议用css设置canvas的宽高，没有px单位&amp;lt;canvas id=&amp;quot;canvas&amp;quot; style=&amp;quot;di">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2016-04-15T02:49:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="canvas">
+<meta name="twitter:description" content="基于状态绘制后面的绘制会影响前面的效果，故用到beginPath()和closePath()方法，把一个个图形绘制分开,但是closePath()方法会自动将非封闭的图形闭合起来，两个方法不一定要同时出现 绘制直线1234567891011121314//不建议用css设置canvas的宽高，没有px单位&amp;lt;canvas id=&amp;quot;canvas&amp;quot; style=&amp;quot;di">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>canvas</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about">关于</a></li>
+         
+          <li><a href="/archives">归档</a></li>
+         
+          <li><a href="/tags">标签</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2016/04/14/CSS雪碧图/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/04/14/canvas/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/04/14/canvas/&text=canvas"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/04/14/canvas/&title=canvas"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/04/14/canvas/&is_video=false&description=canvas"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=canvas&body=Check out this article: http://yoursite.com/2016/04/14/canvas/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/04/14/canvas/&title=canvas"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/04/14/canvas/&title=canvas"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/04/14/canvas/&title=canvas"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/04/14/canvas/&title=canvas"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/04/14/canvas/&name=canvas&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基于状态绘制"><span class="toc-number">1.</span> <span class="toc-text">基于状态绘制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#绘制直线"><span class="toc-number">1.1.</span> <span class="toc-text">绘制直线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#绘制七巧板"><span class="toc-number">1.2.</span> <span class="toc-text">绘制七巧板</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        canvas
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">图南</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2016-04-14T12:26:06.000Z" itemprop="datePublished">2016-04-14</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/前端/">前端</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="基于状态绘制"><a href="#基于状态绘制" class="headerlink" title="基于状态绘制"></a>基于状态绘制</h3><p><strong>后面的绘制会影响前面的效果，故用到beginPath()和closePath()方法，把一个个图形绘制分开,但是closePath()方法会自动将非封闭的图形闭合起来，两个方法不一定要同时出现</strong></p>
+<h4 id="绘制直线"><a href="#绘制直线" class="headerlink" title="绘制直线"></a>绘制直线</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//不建议用css设置canvas的宽高，没有px单位</span><br><span class="line">&lt;canvas id=&quot;canvas&quot; style=&quot;display:block; margin:50px auto; border:1px solid #aaa&quot; width=&quot;1024&quot; height=&quot;768&quot;&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	window.onload=function()&#123;</span><br><span class="line">		var canvas = document.getElementById(&quot;canvas&quot;);</span><br><span class="line">		var context = canvas.getContext(&quot;2d&quot;);</span><br><span class="line">		context.moveTo(0,0);</span><br><span class="line">        context.lineTo(200,300);</span><br><span class="line">        context.lineWidth=5;</span><br><span class="line">        context.strokeStyle=&quot;#cccccc&quot;</span><br><span class="line">        context.stroke();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="绘制七巧板"><a href="#绘制七巧板" class="headerlink" title="绘制七巧板"></a>绘制七巧板</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;canvas id=&quot;canvas&quot; style=&quot;border:1px solid #aaa;display:block;margin:50px auto;&quot; height=&quot;768&quot; width=&quot;1024&quot; &gt;&lt;/canvas&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">window.onload=function()&#123;</span><br><span class="line">	var canvas =document.getElementById(&quot;canvas&quot;);</span><br><span class="line">	var context = canvas.getContext(&quot;2d&quot;);</span><br><span class="line">    var arr1 = [&#123;x:100,y:100&#125;,&#123;x:500,y:100&#125;,&#123;x:300,y:300&#125;,&#123;color:&quot;#ADFF2F&quot;&#125;];</span><br><span class="line">    var arr2 = [&#123;x:100,y:100&#125;,&#123;x:100,y:500&#125;,&#123;x:300,y:300&#125;,&#123;color:&quot;#48D1CC&quot;&#125;];</span><br><span class="line">    var arr3 = [&#123;x:100,y:500&#125;,&#123;x:300,y:500&#125;,&#123;x:200,y:400&#125;,&#123;color:&quot;#EEA2AD&quot;&#125;];</span><br><span class="line">    var arr4 = [&#123;x:200,y:400&#125;,&#123;x:300,y:500&#125;,&#123;x:400,y:400&#125;,&#123;x:300,y:300&#125;,&#123;color:&quot;#EED5D2&quot;&#125;];</span><br><span class="line">    var arr5 = [&#123;x:400,y:200&#125;,&#123;x:400,y:400&#125;,&#123;x:500,y:300&#125;,&#123;x:500,y:100&#125;,&#123;color:&quot;#EE3B3B&quot;&#125;];</span><br><span class="line">    var arr6 = [&#123;x:400,y:200&#125;,&#123;x:300,y:300&#125;,&#123;x:400,y:400&#125;,&#123;color:&quot;#EEC900&quot;&#125;];</span><br><span class="line">    var arr7 = [&#123;x:500,y:300&#125;,&#123;x:300,y:500&#125;,&#123;x:500,y:500&#125;,&#123;color:&quot;#EE7621&quot;&#125;];</span><br><span class="line">    var Whole=[arr1,arr2,arr3,arr4,arr5,arr6,arr7];</span><br><span class="line">    for(var i=0;i&lt;Whole.length;i++)&#123;</span><br><span class="line">        draw(Whole[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    //函数声明</span><br><span class="line">    function draw(arr)&#123;</span><br><span class="line">        context.beginPath();</span><br><span class="line">        context.moveTo(arr[0].x,arr[0].y);</span><br><span class="line">        for(var i=1;i&lt;arr.length;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            context.lineTo(arr[i].x,arr[i].y)</span><br><span class="line">        &#125;</span><br><span class="line">        context.closePath();</span><br><span class="line">        //绘制</span><br><span class="line">        context.fillStyle=arr[arr.length-1].color;</span><br><span class="line">        context.fill();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about">关于</a></li>
+         
+          <li><a href="/archives">归档</a></li>
+         
+          <li><a href="/tags">标签</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基于状态绘制"><span class="toc-number">1.</span> <span class="toc-text">基于状态绘制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#绘制直线"><span class="toc-number">1.1.</span> <span class="toc-text">绘制直线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#绘制七巧板"><span class="toc-number">1.2.</span> <span class="toc-text">绘制七巧板</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/04/14/canvas/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/04/14/canvas/&text=canvas"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/04/14/canvas/&title=canvas"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/04/14/canvas/&is_video=false&description=canvas"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=canvas&body=Check out this article: http://yoursite.com/2016/04/14/canvas/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/04/14/canvas/&title=canvas"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/04/14/canvas/&title=canvas"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/04/14/canvas/&title=canvas"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/04/14/canvas/&title=canvas"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/04/14/canvas/&name=canvas&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 llding
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about">关于</a></li>
+         
+          <li><a href="/archives">归档</a></li>
+         
+          <li><a href="/tags">标签</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="响应式设计的原则：移动端优先，渐进增强 移动端优先：在设计时就考虑移动端展示效果，而不是根据PC端的效果再进行改动 渐进增强：如果某些浏览器支持一些很好的效果，而另一些浏览器不支持，不要放弃使用这些好的效果响应式布局的三种方式：   CSS3 Media Query  （最简单） 借助原生JS   （代码量大，不推荐） 开源的响应式框架，如BootStrap  CSS3 Media Query媒体">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="响应式设计">
+<meta property="og:url" content="http://yoursite.com/2016/04/07/响应式布局/index.html">
+<meta property="og:site_name" content="图南">
+<meta property="og:description" content="响应式设计的原则：移动端优先，渐进增强 移动端优先：在设计时就考虑移动端展示效果，而不是根据PC端的效果再进行改动 渐进增强：如果某些浏览器支持一些很好的效果，而另一些浏览器不支持，不要放弃使用这些好的效果响应式布局的三种方式：   CSS3 Media Query  （最简单） 借助原生JS   （代码量大，不推荐） 开源的响应式框架，如BootStrap  CSS3 Media Query媒体">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2016-04-12T12:52:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="响应式设计">
+<meta name="twitter:description" content="响应式设计的原则：移动端优先，渐进增强 移动端优先：在设计时就考虑移动端展示效果，而不是根据PC端的效果再进行改动 渐进增强：如果某些浏览器支持一些很好的效果，而另一些浏览器不支持，不要放弃使用这些好的效果响应式布局的三种方式：   CSS3 Media Query  （最简单） 借助原生JS   （代码量大，不推荐） 开源的响应式框架，如BootStrap  CSS3 Media Query媒体">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>响应式设计</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about">关于</a></li>
+         
+          <li><a href="/archives">归档</a></li>
+         
+          <li><a href="/tags">标签</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/04/09/JSON/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2016/04/05/基本数据结构/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/04/07/响应式布局/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/04/07/响应式布局/&text=响应式设计"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/04/07/响应式布局/&title=响应式设计"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/04/07/响应式布局/&is_video=false&description=响应式设计"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=响应式设计&body=Check out this article: http://yoursite.com/2016/04/07/响应式布局/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/04/07/响应式布局/&title=响应式设计"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/04/07/响应式布局/&title=响应式设计"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/04/07/响应式布局/&title=响应式设计"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/04/07/响应式布局/&title=响应式设计"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/04/07/响应式布局/&name=响应式设计&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#响应式设计的原则：移动端优先，渐进增强"><span class="toc-number">1.</span> <span class="toc-text">响应式设计的原则：移动端优先，渐进增强</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#响应式布局的三种方式："><span class="toc-number">2.</span> <span class="toc-text">响应式布局的三种方式：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS3-Media-Query"><span class="toc-number"></span> <span class="toc-text">CSS3 Media Query</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#CSS3-Media-Query常用属性"><span class="toc-number">0.1.</span> <span class="toc-text">CSS3 Media Query常用属性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bootstrap"><span class="toc-number"></span> <span class="toc-text">Bootstrap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#栅格系统"><span class="toc-number">1.</span> <span class="toc-text">栅格系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Bootstrap支持的Javascript插件"><span class="toc-number">2.</span> <span class="toc-text">Bootstrap支持的Javascript插件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#12种单独插件"><span class="toc-number">2.1.</span> <span class="toc-text">12种单独插件</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        响应式设计
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">图南</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2016-04-07T09:21:09.000Z" itemprop="datePublished">2016-04-07</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/前端/">前端</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h4 id="响应式设计的原则：移动端优先，渐进增强"><a href="#响应式设计的原则：移动端优先，渐进增强" class="headerlink" title="响应式设计的原则：移动端优先，渐进增强"></a>响应式设计的原则：移动端优先，渐进增强</h4><ol>
+<li>移动端优先：在设计时就考虑移动端展示效果，而不是根据PC端的效果再进行改动</li>
+<li>渐进增强：如果某些浏览器支持一些很好的效果，而另一些浏览器不支持，不要放弃使用这些好的效果<h4 id="响应式布局的三种方式："><a href="#响应式布局的三种方式：" class="headerlink" title="响应式布局的三种方式："></a>响应式布局的三种方式：</h4></li>
+</ol>
+<ul>
+<li>CSS3 Media Query  （最简单）</li>
+<li>借助原生JS   （代码量大，不推荐）</li>
+<li>开源的响应式框架，如BootStrap</li>
+</ul>
+<h3 id="CSS3-Media-Query"><a href="#CSS3-Media-Query" class="headerlink" title="CSS3 Media Query"></a>CSS3 Media Query</h3><p>媒体查询，多套CSS样式，在不同分辨率下生效</p>
+<h5 id="CSS3-Media-Query常用属性"><a href="#CSS3-Media-Query常用属性" class="headerlink" title="CSS3 Media Query常用属性"></a>CSS3 Media Query常用属性</h5><ul>
+<li>device-width  device- height:硬件宽高</li>
+<li>width height :窗口宽高</li>
+<li>orientation ：设备方向（横竖屏时展示效果不同）</li>
+<li>resolution ：设备分辨率</li>
+</ul>
+<h3 id="Bootstrap"><a href="#Bootstrap" class="headerlink" title="Bootstrap"></a>Bootstrap</h3><p>框架、前端工具集、基于H5，CSS3<br>核心是 <strong>栅格系统</strong></p>
+<h4 id="栅格系统"><a href="#栅格系统" class="headerlink" title="栅格系统"></a>栅格系统</h4><ol>
+<li>网格系统被划分为12列</li>
+<li>浏览器有四种屏幕类型 xs sm md lg,其断点分别为768px,992px,1220px</li>
+<li><p>具体使用格式如下：具体内容放到.col层</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">   &lt;div class=&quot;row&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;col-md-3&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;col-md-3&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;col-md-3&quot;&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">   &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列偏移：col-md-offset-1,表示该列向右偏移1列</p>
+</li>
+<li>列排序：col-md-push-1，表示该列向右偏移1列；col-md-pull-1,表示该列向左偏移1列</li>
+<li>列嵌套：.col里嵌套.row</li>
+</ol>
+<h4 id="Bootstrap支持的Javascript插件"><a href="#Bootstrap支持的Javascript插件" class="headerlink" title="Bootstrap支持的Javascript插件"></a>Bootstrap支持的Javascript插件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!—导入jQuery版本库，因为Bootstrap的JavaScript插件依赖于jQuery --&gt;</span><br><span class="line">&lt;script src=&quot;http://libs.baidu.com/jquery/1.9.0/jquery.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;!—- 一次性导入所有Bootstrap的JavaScript插件（压缩版本） --&gt;</span><br><span class="line">&lt;script src=&quot;js/bootstrap.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="12种单独插件"><a href="#12种单独插件" class="headerlink" title="12种单独插件"></a>12种单独插件</h5><p>  ☑动画过渡（Transitions）:对应的插件文件“transition.js”<br>  ☑ 模态弹窗（Modal）:对应的插件文件“modal.js”<br>  ☑ 下拉菜单（Dropdown）：对应的插件文件“dropdown.js”<br>  ☑ 滚动侦测（Scrollspy）：对应的插件文件“scrollspy.js”<br>  ☑ 选项卡（Tab）：对应的插件文件“tab.js”<br>  ☑ 提示框（Tooltips）：对应的插件文件“tooltop.js”<br>  ☑ 弹出框（Popover）：对应的插件文件“popover.js”<br>  ☑ 警告框（Alert）：对应的插件文件“alert.js”<br>  ☑ 按钮（Buttons）：对应的插件文件“button.js”<br>  ☑ 折叠/手风琴（Collapse）：对应的插件文件“collapse.js”<br>  ☑ 图片轮播Carousel：对应的插件文件“carousel.js”<br>  ☑ 自动定位浮标Affix：对应的插件文件“affix.js”</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about">关于</a></li>
+         
+          <li><a href="/archives">归档</a></li>
+         
+          <li><a href="/tags">标签</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#响应式设计的原则：移动端优先，渐进增强"><span class="toc-number">1.</span> <span class="toc-text">响应式设计的原则：移动端优先，渐进增强</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#响应式布局的三种方式："><span class="toc-number">2.</span> <span class="toc-text">响应式布局的三种方式：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS3-Media-Query"><span class="toc-number"></span> <span class="toc-text">CSS3 Media Query</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#CSS3-Media-Query常用属性"><span class="toc-number">0.1.</span> <span class="toc-text">CSS3 Media Query常用属性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bootstrap"><span class="toc-number"></span> <span class="toc-text">Bootstrap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#栅格系统"><span class="toc-number">1.</span> <span class="toc-text">栅格系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Bootstrap支持的Javascript插件"><span class="toc-number">2.</span> <span class="toc-text">Bootstrap支持的Javascript插件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#12种单独插件"><span class="toc-number">2.1.</span> <span class="toc-text">12种单独插件</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/04/07/响应式布局/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/04/07/响应式布局/&text=响应式设计"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/04/07/响应式布局/&title=响应式设计"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/04/07/响应式布局/&is_video=false&description=响应式设计"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=响应式设计&body=Check out this article: http://yoursite.com/2016/04/07/响应式布局/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/04/07/响应式布局/&title=响应式设计"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/04/07/响应式布局/&title=响应式设计"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/04/07/响应式布局/&title=响应式设计"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/04/07/响应式布局/&title=响应式设计"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/04/07/响应式布局/&name=响应式设计&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 llding
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about">关于</a></li>
+         
+          <li><a href="/archives">归档</a></li>
+         
+          <li><a href="/tags">标签</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
