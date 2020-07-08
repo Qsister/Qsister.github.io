@@ -1,7 +1,4 @@
-importScripts(
-  "https://storage.googleapis.com/workbox-cdn/releases/3.1.0/workbox-sw.js"
-);
-var cacheStorageKey = "minimal-pwa-1";
+var cacheStorageKey = "minimal-pwa-2";
 var cacheList = ["/", "index.html", "main.css", "test.jpg"];
 self.addEventListener("install", e => {
   e.waitUntil(
@@ -9,16 +6,6 @@ self.addEventListener("install", e => {
       .open(cacheStorageKey)
       .then(cache => cache.addAll(cacheList))
       .then(() => self.skipWaiting())
-  );
-});
-self.addEventListener("fetch", function(e) {
-  e.respondWith(
-    caches.match(e.request).then(function(response) {
-      if (response != null) {
-        return response;
-      }
-      return fetch(e.request.url);
-    })
   );
 });
 self.addEventListener("activate", function(e) {
@@ -41,5 +28,15 @@ self.addEventListener("activate", function(e) {
       .then(() => {
         return self.clients.claim();
       })
+  );
+});
+self.addEventListener("fetch", function(e) {
+  e.respondWith(
+    caches.match(e.request).then(function(response) {
+      if (response != null) {
+        return response;
+      }
+      return fetch(e.request.url);
+    })
   );
 });
